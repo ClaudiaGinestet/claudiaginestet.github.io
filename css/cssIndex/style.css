@@ -1,0 +1,122 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 1.2;
+    color: #0f0f0f;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navbar */
+.navbar {
+    background-color: transparent;
+}
+
+.navbar-brand .logo {
+    width: 50%;
+}
+
+.menu {
+    display: flex;
+    font-size: 20px;
+    color: white;
+}
+
+.menu li a {
+    padding: 16px;
+    border-radius: 5px;
+}
+
+.active {
+    background-color: #C3D5C5;
+    transition: 0.5s;
+}
+
+/* Ajustes para el Carrusel */
+.carousel {
+  margin-top: 50px; 
+  margin-left: 20px;
+  margin-bottom: 50px; 
+  margin-right: 20px;
+}
+
+.carousel-caption {
+  bottom: 1rem;
+  z-index: 1;
+}
+
+.carousel-item {
+  height: 600px; /* Altura del carrusel */
+}
+
+.carousel-item > img {
+  display: block;
+  margin: 0 auto; /* Centrar las imágenes del carrusel */
+  max-height: 600px; /* Establecer la altura máxima de la imagen */
+  max-width: 100%; /* Establecer el ancho máximo de la imagen */
+  object-fit:cover; /* Escalar la imagen para que se ajuste completamente al contenedor sin estirarse */
+ 
+}
+
+/* Footer */
+footer {
+    color: #fbfbfb;
+    text-align: center;
+    padding: 24px;
+    height: 90px;
+    background-color: #33331587; 
+    margin-left: 20px; 
+    margin-right: 20px; 
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+    .logo {
+        width: 60%;
+    }
+
+    .menu li a {
+        padding: 12px;
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .carousel {
+      margin-top: 30px; /* Reducir el margen superior en dispositivos móviles */
+      margin-bottom: 30px; /* Reducir el margen inferior en dispositivos móviles */
+  }
+}
+
+    /* Featurette Heading */
+    .featurette-heading {
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 62em) {
+    .featurette-heading {
+        margin-top: 7rem;
+    }
+}

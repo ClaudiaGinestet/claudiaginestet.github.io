@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>MediCloud - Turnos</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top bg-body clean-navbar navbar-light">
+            <div class="container"><a class="navbar-brand logo" href="#"><img src="images/logo-hor.png" alt="Logo"
+                        class="logo"></a><button data-bs-toggle="collapse" class="navbar-toggler"
+                    data-bs-target="#navcol-1"><span class="visually-hidden">Menú</span><span
+                        class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="navbar-nav ms-auto menu">
+                        <li class="nav-item"><a class="nav-link " href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="turnos.html">Turnos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="login.html">Ingresar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page">
+        <section class="clean-block clean-cart dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2>Turnos Web</h2>
+                    
+
+                    <p>Ya podés acceder a turnos con tu médico de cabecera y especialistas a través de la turnera web.
+                    </p>
+                    <div class="alert alert-success" role="alert" style="visibility: hidden" id="MensajeFormulario">
+                        <span>Su turno ha sido registrado bajo el Número de trámite <strong>#<span id="NumeroTramite"></span></strong> &nbsp;y será validado por un operador, muchas gracias.</span>
+                      </div>
+                </div>
+                <div class="content">
+                    <div class="row g-0">
+                        <div class="col-md-12 col-lg-8">
+                            <div class="items clean-block clean-form dark">
+                                <form action="turnos.html?enviado=si" method="post" onsubmit="return validar()">
+                                    <p>Solicitá un turno y nos contactaremos a la brevedad con vos.</p>
+                                    <div class="mb-3"><label class="form-label"><strong>Documento de
+                                                Identidad</strong> <span class="error-mensaje">*</span></label>
+                                        <div class="flex">
+                                            <select class="form-control input-dni" id="IdentificacionTipo">
+                                                <option value="">Seleccione..</option>
+                                                <option value="1">DNI</option>
+                                                <option value="2">Pasaporte</option>
+                                            </select>
+                                            <input class="form-control input-dni2" type="number" id="IdentificacionNumero" data-bs-theme="light" placeholder="Ingrese su identificación">
+                                        </div>
+                                       <span id="IdentificacionError" class="error-mensaje"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Nombre</strong> <span class="error-mensaje">*</span></label>
+                                        <input class="form-control" type="text" id="Nombre" data-bs-theme="light" placeholder="Ingrese su nombre">
+                                        <span  id="NombreError" class="error-mensaje" ></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Apellido</strong> <span class="error-mensaje">*</span></label>
+                                        <input class="form-control" type="text" id="Apellido" data-bs-theme="light" placeholder="Ingrese su apellido">
+                                        <span  id="ApellidoError" class="error-mensaje" ></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Email</strong> <span class="error-mensaje">*</span></label>
+                                        <input class="form-control" type="email" id="Email" data-bs-theme="light">
+                                        <span  id="EmailError" class="error-mensaje" ></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Teléfono</strong> <span class="error-mensaje">*</span></label>
+                                        <input class="form-control" type="number" id="Tele" data-bs-theme="light">
+                                        <span  id="TeleError" class="error-mensaje" ></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Prepaga</strong> <span class="error-mensaje">*</span></label>
+                                        <input class="form-control" type="text" id="Prepaga" data-bs-theme="light">
+                                        <span  id="PrepagaError" class="error-mensaje" ></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Plan</strong> <span class="error-mensaje">*</span></label>
+                                        <input class="form-control" type="text" id="Planes" data-bs-theme="light">
+                                        <span  id="PlanesError" class="error-mensaje" ></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Fecha / Hora</strong> <span class="error-mensaje">*</span></label>
+                                        <input class="form-control" type="datetime-local" id="Fecha" data-bs-theme="light">
+                                        <span  id="FechaError" class="error-mensaje" ></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Provincia</strong> <span class="error-mensaje">*</span></label>
+                                        <select class="form-control" id="Provincia">
+                                            <option value="">Seleccione..</option>
+                                            <option value="1">Ciudad de Buenos Aires</option>
+                                            <option value="2">GBA Zona Norte</option>
+                                            <option value="3">GBA Zona Noroeste</option>
+                                            <option value="4">GBA Zona Oeste</option>
+                                            <option value="5">GBA Zona Sudoeste</option>
+                                            <option value="6">GBA Zona Sudeste</option>
+                                            <option value="7">Buenos Aires</option>
+                                            <option value="8">Catamarca</option>
+                                            <option value="9">Chaco</option>
+                                            <option value="10">Chubut</option>
+                                            <option value="11">Córdoba</option>
+                                            <option value="12">Corrientes</option>
+                                            <option value="13">Entre Ríos</option>
+                                            <option value="14">Formosa</option>
+                                            <option value="15">Jujuy</option>
+                                            <option value="16">La Pampa</option>
+                                            <option value="17">La Rioja</option>
+                                            <option value="18">Mendoza</option>
+                                            <option value="19">Misiones</option>
+                                            <option value="20">Neuquén</option>
+                                            <option value="21">Río Negro</option>
+                                            <option value="22">Salta</option>
+                                            <option value="23">San Juan</option>
+                                            <option value="24">San Luis</option>
+                                            <option value="25">Santa Cruz</option>
+                                            <option value="26">Santa Fe</option>
+                                            <option value="27">Santiago del Estero</option>
+                                            <option value="28">Tierra del Fuego</option>
+                                            <option value="29">Tucumán</option>
+                                        </select>
+                                        <span  id="ProvinciaError" class="error-mensaje" ></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Especialidad</strong> <span class="error-mensaje">*</span></label>
+                                        <select class="form-control" id="Especialidad">
+                                            <option value="">Seleccione..</option>
+                                            <option value="001">ADOLESCENCIA Y PUBERTAD</option>
+                                            <option value="002">ALERGIA E INMUNOLOGÍA</option>
+                                            <option value="003">ALERGIA E INMUNOLOGÍA INFANTIL</option>
+                                            <option value="004">ANATOMÍA PATOLÓGICA</option>
+                                            <option value="005">ANATOMÍA PATOLÓGICA BUCO-MAXILO-FACIAL</option>
+                                            <option value="006">ANDROLOGÍA</option>
+                                            <option value="007">ANGIOGRAFÍA DIGITAL</option>
+                                            <option value="008">ANGIOPLASTÍAS</option>
+                                            <option value="009">ARTICULACIÓN TEMPORO-MANDIBULAR</option>
+                                            <option value="010">AUDIOMETRÍAS</option>
+                                            <option value="011">CARDIOLOGÍA</option>
+                                            <option value="012">CARDIOLOGÍA INFANTIL</option>
+                                            <option value="013">CIRUGÍA BUCO-MÁXILO-FACIAL</option>
+                                            <option value="014">CIRUGÍA CARDIOVASCULAR</option>
+                                            <option value="015">CIRUGÍA CARDIOVASCULAR INFANTIL</option>
+                                            <option value="016">CIRUGÍA DE CABEZA Y CUELLO Y MÁXILO-FACIAL</option>
+                                            <option value="017">CIRUGÍA DE CABEZA Y CUELLO Y MÁXILO-FACIAL INFANTIL
+                                            </option>
+                                            <option value="018">CIRUGÍA DE QUEMADOS</option>
+                                            <option value="019">CIRUGÍA DENTO-MAXILAR</option>
+                                            <option value="020">CIRUGÍA GENERAL</option>
+                                            <option value="021">CIRUGÍA INFANTIL</option>
+                                            <option value="022">CIRUGÍA ONCOLÓGICA</option>
+                                            <option value="023">CIRUGÍA REPARADORA</option>
+                                            <option value="024">CIRUGÍA TORÁCICA</option>
+                                            <option value="025">CIRUGÍA VASCULAR PERIFÉRICA</option>
+                                            <option value="026">CLÍNICA MÉDICA</option>
+                                            <option value="027">DENSITOMETRÍAS ÓSEAS</option>
+                                            <option value="028">DERMATOLOGÍA</option>
+                                            <option value="029">DERMATOLOGÍA INFANTIL</option>
+                                            <option value="030">DIAGNÓSTICO POR IMÁGENES</option>
+                                            <option value="031">DROGADEPENDENCIA Y ALCOHOLISMO</option>
+                                            <option value="032">ECOCARDIOGRAFÍA</option>
+                                            <option value="033">ECOCARDIOGRAFÍA INFANTIL</option>
+                                            <option value="034">ECOGRAFÍAS</option>
+                                            <option value="035">ECOGRAFÍAS INFANTILES</option>
+                                            <option value="036">ELECTROCARDIOGRAFÍA INFANTIL</option>
+                                            <option value="037">ELECTROCARDIOGRAFÍA Y ELECTROCARDIOGRAFÍA DINÁMICA
+                                                (HOLTER)</option>
+                                            <option value="038">ELECTROENCEFALOGRAFÍA</option>
+                                            <option value="039">ELECTROENCEFALOGRAFÍA INFANTIL</option>
+                                            <option value="040">ELECTROMIOGRAFÍAS</option>
+                                            <option value="041">ENDOCRINOLOGÍA Y METABOLISMO</option>
+                                            <option value="042">ENDOCRINOLOGÍA Y METABOLISMO INFANTIL</option>
+                                            <option value="043">ENDODONCIA</option>
+                                            <option value="044">ENDOSCOPÍAS DIGESTIVAS</option>
+                                            <option value="045">ENDOSCOPÍAS DIGESTIVAS PEDIÁTRICAS</option>
+                                            <option value="046">ENDOSCOPÍAS RESPIRATORIAS</option>
+                                            <option value="047">ENDOSCOPÍAS UROLÓGICAS</option>
+                                            <option value="048">ERGOMETRÍAS</option>
+                                            <option value="049">ESTOMATOLOGÍA ADULTOS</option>
+                                            <option value="050">ESTUDIOS FUNCIONALES RESPIRATORIOS</option>
+                                            <option value="051">ESTUDIOS MAMARIOS</option>
+                                            <option value="052">EVALUACIÓN NEUROCOGNITIVA PSICOLÓGICA</option>
+                                            <option value="053">EVALUACIÓN NEUROPSICOPEDAGÓGICA</option>
+                                            <option value="054">FISIATRÍA</option>
+                                            <option value="055">FLEBOLOGÍA</option>
+                                            <option value="056">FONOAUDIOLOGÍA</option>
+                                            <option value="057">GASTROENTEROLOGÍA</option>
+                                            <option value="058">GASTROENTEROLOGÍA INFANTIL</option>
+                                            <option value="059">GENÉTICA MÉDICA</option>
+                                            <option value="060">GERIATRÍA</option>
+                                            <option value="061">GINECOLOGÍA</option>
+                                            <option value="062">GINECOLOGÍA INFANTO-JUVENIL</option>
+                                            <option value="063">HEMATOLOGÍA</option>
+                                            <option value="064">HEMATOLOGÍA INFANTIL</option>
+                                            <option value="065">HEMODINAMIA ADULTOS</option>
+                                            <option value="066">HEMODINAMIA INFANTIL</option>
+                                            <option value="067">HEMOSTASIA Y TROMBOSIS</option>
+                                            <option value="068">HEPATOLOGÍA</option>
+                                            <option value="069">HOSPITAL DE DÍA SALUD MENTAL</option>
+                                            <option value="070">INFECTOLOGÍA</option>
+                                            <option value="071">INFECTOLOGÍA INFANTIL</option>
+                                            <option value="072">KINESIOLOGÍA - TERAPIA FÍSICA</option>
+                                            <option value="073">KINESIOLOGÍA PEDIÁTRICA</option>
+                                            <option value="074">LABORATORIO DE ANÁLISIS CLÍNICOS</option>
+                                            <option value="075">LABORATORIO DE ANÁLISIS CLÍNICOS PEDIÁTRICOS</option>
+                                            <option value="076">MEDICINA NUCLEAR</option>
+                                            <option value="077">MEDICINA NUCLEAR INFANTIL</option>
+                                            <option value="078">MICOLOGÍA MÉDICA</option>
+                                            <option value="079">MONITOREO FETAL</option>
+                                            <option value="080">NEFROLOGÍA</option>
+                                            <option value="081">NEFROLOGÍA INFANTIL</option>
+                                            <option value="082">NEUMONOLOGÍA</option>
+                                            <option value="083">NEUMONOLOGÍA INFANTIL</option>
+                                            <option value="084">NEUROCIRUGÍA</option>
+                                            <option value="085">NEUROCIRUGÍA INFANTIL</option>
+                                            <option value="086">NEUROFISIOLOGÍA</option>
+                                            <option value="087">NEUROFISIOLOGÍA INFANTIL</option>
+                                            <option value="088">NEUROLOGÍA</option>
+                                            <option value="089">NEUROLOGÍA INFANTIL</option>
+                                            <option value="090">NEUROOFTALMOLOGÍA</option>
+                                            <option value="091">NEUROOFTALMOLOGÍA INFANTIL</option>
+                                            <option value="092">NUTRICIÓN</option>
+                                            <option value="093">NUTRICIÓN INFANTIL</option>
+                                            <option value="094">NUTRICIÓN Y DIABETOLOGÍA</option>
+                                            <option value="095">NUTRICIÓN Y DIABETOLOGÍA INFANTO-JUVENIL</option>
+                                            <option value="096">OBSTETRICIA</option>
+                                            <option value="097">ODONTOGERIATRÍA</option>
+                                            <option value="098">ODONTOLOGÍA GENERAL</option>
+                                            <option value="099">ODONTOLOGÍA PACIENTES DE ALTO RIESGO</option>
+                                            <option value="100">ODONTOLOGÍA PERSONAS CON DISCAPACIDAD</option>
+                                            <option value="101">ODONTOPEDIATRÍA</option>
+                                            <option value="102">OFTALMOLOGÍA</option>
+                                            <option value="103">OFTALMOLOGÍA INFANTIL</option>
+                                            <option value="104">ONCOLOGÍA</option>
+                                            <option value="105">ONCOLOGÍA INFANTIL</option>
+                                            <option value="106">ORIENTACIÓN VOCACIONAL</option>
+                                            <option value="107">ORIENTADORES SALUD MENTAL ADULTOS</option>
+                                            <option value="108">ORIENTADORES SALUD MENTAL INFANTO JUVENIL</option>
+                                            <option value="109">ORIENTADORES SALUD MENTAL PAREJA Y FAMILIA</option>
+                                            <option value="110">ORTODONCIA Y ORTOPEDIA DE MAXILARES</option>
+                                            <option value="111">ORTÓPTICA</option>
+                                            <option value="112">OSTEOPATÍAS METABÓLICAS</option>
+                                            <option value="113">OTORRINOLARINGOLOGÍA</option>
+                                            <option value="114">OTORRINOLARINGOLOGÍA INFANTIL</option>
+                                            <option value="115">PATOLOGÍA MAMARIA</option>
+                                            <option value="116">PEDIATRÍA</option>
+                                            <option value="117">PERIODONCIA</option>
+                                            <option value="118">POTENCIALES EVOCADOS</option>
+                                            <option value="119">PROCTOLOGÍA</option>
+                                            <option value="120">PRÓTESIS DENTAL</option>
+                                            <option value="121">PSICODIAGNÓSTICO</option>
+                                            <option value="122">PSICOLOGÍA ADULTOS</option>
+                                            <option value="123">PSICOLOGÍA NIÑOS Y ADOLESCENTES</option>
+                                            <option value="124">PSICOLOGÍA PAREJA Y FAMILIA</option>
+                                            <option value="125">PSICOPEDAGOGÍA</option>
+                                            <option value="126">PSIQUIATRÍA ADULTOS</option>
+                                            <option value="127">PSIQUIATRÍA NIÑOS Y ADOLESCENTES</option>
+                                            <option value="128">PUNCIONES BIÓPSICAS BAJO CONTROL ECOGRÁFICO</option>
+                                            <option value="129">PUNCIONES BIÓPSICAS BAJO CONTROL TOMOGRÁFICO</option>
+                                            <option value="130">RADIOLOGÍA</option>
+                                            <option value="131">RADIOLOGÍA DENTAL</option>
+                                            <option value="132">RADIOLOGÍA INFANTIL</option>
+                                            <option value="133">RADIOTERAPIA Y TELECOBALTOTERAPIA</option>
+                                            <option value="134">REHABILITACIÓN CARDIOVASCULAR</option>
+                                            <option value="135">REHABILITACIÓN POSTURAL GLOBAL (R.P.G.)</option>
+                                            <option value="136">RESONANCIA NUCLEAR MAGNÉTICA</option>
+                                            <option value="137">REUMATOLOGÍA</option>
+                                            <option value="138">REUMATOLOGÍA INFANTIL</option>
+                                            <option value="139">SEXOLOGÍA CLÍNICA</option>
+                                            <option value="140">TERAPIA OCUPACIONAL</option>
+                                            <option value="141">TOMOGRAFÍA COMPUTADA</option>
+                                            <option value="142">TOXICOLOGÍA</option>
+                                            <option value="143">TRASTORNOS DE LA CONDUCTA ALIMENTARIA</option>
+                                            <option value="144">TRAUMATOLOGÍA COLUMNA</option>
+                                            <option value="145">TRAUMATOLOGÍA MIEMBRO SUPERIOR</option>
+                                            <option value="146">TRAUMATOLOGÍA PELVIS Y CADERA</option>
+                                            <option value="147">TRAUMATOLOGÍA PIERNA Y PIE</option>
+                                            <option value="148">TRAUMATOLOGÍA RODILLA</option>
+                                            <option value="149">TRAUMATOLOGÍA Y ORTOPEDIA GENERAL</option>
+                                            <option value="150">TRAUMATOLOGÍA Y ORTOPEDIA INFANTIL</option>
+                                            <option value="151">URODINAMIA</option>
+                                            <option value="152">UROGINECOLOGÍA</option>
+                                            <option value="153">UROLOGÍA</option>
+                                            <option value="154">UROLOGÍA INFANTIL</option>
+                                        </select>
+                                        <span  id="EspecialidadError" class="error-mensaje" ></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Observaciones</strong></label>
+                                        <textarea class="form-control" id="observaciones" data-bs-theme="light"></textarea>
+                                    </div>
+                                    <div class="mb-3 boton-turno">
+                                        <button class="btn btn-bd-primary" type="submit">Registrar Turno <i class="fa-solid fa-paper-plane"></i></button> &nbsp;&nbsp;
+                                        <button class="btn btn-warning" type="reset">Limpiar <i class="fa-solid fa-eraser"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-4">
+                            <div class="bg-body-tertiary summary">
+                                <h3>
+                                    <span class="text"><i class="fa-solid fa-user-doctor"></i> </span>
+                                    <span class="price">Chat / Online</span>
+                                    </h3>
+                                    <h4 class="border-primary-subtle" style="border-color: var(--bs-primary-border-subtle);">
+                                        <span class="price">Si estás registrado como paciente, ingresá al Portal de Pacientes, opción turnos.</span>
+                                    </h4>
+                                    <img src="images/doctor-turno.jpg" alt="Imagen Doctor" class="imagen-doctor img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <p>&copy; 2024 MediCloud. Todos los derechos reservados.</p>
+            </div>
+            <div class="col-md-6 text-end">
+              <!-- Iconos de LinkedIn y GitHub -->
+              <a href="https://github.com/ClaudiaGinestet/Grupo8-codoacodo" target="_blank"><i
+                  class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    <!-- JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"  crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9c41c1c996.js" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
